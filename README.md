@@ -11,8 +11,8 @@ Here is the overflow of the project:-
 1. Download, Import and Inspect the data
 2. Clean the data
 
-2. Perform EDA
+3. Perform EDA
 
-3. Build an initial CNN, evaluate it against validation
+4. Build an initial CNN, evaluate it against validation
 
-4. Perform hyper parameter optimization to improve results
+5. Perform hyper parameter optimization to improve results
