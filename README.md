@@ -85,6 +85,10 @@ Let's start by creating some visuals to show how effectively the model worked wi
 
 <img width="323" alt="image" src="https://github.com/user-attachments/assets/b876918b-6319-4cda-8eb6-680a471aa211">
 
+**Random Forest**
+
+<img width="264" alt="image" src="https://github.com/user-attachments/assets/d652a657-1eba-4e18-a3b0-52bd6feac0a9">      <img width="256" alt="image" src="https://github.com/user-attachments/assets/9099e9e9-bc63-46dd-a097-ae037e129e39">               <img width="259" alt="image" src="https://github.com/user-attachments/assets/b199eb2b-306c-400d-befa-5560a9a092c4">               <img width="256" alt="image" src="https://github.com/user-attachments/assets/e73fa101-f690-4705-a7d8-9c23f04ac0fc">               <img width="254" alt="image" src="https://github.com/user-attachments/assets/91d00848-438c-4e42-83c7-6a4a87a7c221">
+
 **Analysis**
 
 The random forest appears to consistently produce the same forecasts. This is essentially a null model in which the mean value of each attribute is simply estimated. For facial recognition, this kind of forecast is practically meaningless. For making decisions, the neural network is consequently strongly favoured. While we might attempt to expand the size of the random forest, accuracy is unlikely to converge nearly as quickly as that of the neural network. I would rather improve the neural network through computing time.
