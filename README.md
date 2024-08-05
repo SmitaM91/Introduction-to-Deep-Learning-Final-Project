@@ -42,7 +42,9 @@ It is important to take into account the modelling approaches that will be appli
 
 I will carry out EDA while I work on data augmentation for my model to ensure that both I and my reader are aware of the true appearance of the photos I am modelling. Let's start by viewing a few faces with keypoints from the training set superimposed on them.
 
-<img width="264" alt="image" src="https://github.com/user-attachments/assets/c3efc68e-ce11-44df-8b48-5b9272658e8e">       <img width="272" alt="image" src="https://github.com/user-attachments/assets/6a135f94-ba9d-481a-a5d2-2cf8ef96e262">
+<img width="264" alt="image" src="https://github.com/user-attachments/assets/c3efc68e-ce11-44df-8b48-5b9272658e8e">       <img width="272" alt="image" src="https://github.com/user-attachments/assets/6a135f94-ba9d-481a-a5d2-2cf8ef96e262">      <img width="274" alt="image" src="https://github.com/user-attachments/assets/ed80271c-78f1-45d4-a18d-de2bbc023a8b">       <img width="273" alt="image" src="https://github.com/user-attachments/assets/78e31171-e3d7-4a04-96df-493d2782fd72">
+
+
 
 
 
