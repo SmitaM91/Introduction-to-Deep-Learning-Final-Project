@@ -45,6 +45,20 @@ I will carry out EDA while I work on data augmentation for my model to ensure th
 <img width="264" alt="image" src="https://github.com/user-attachments/assets/c3efc68e-ce11-44df-8b48-5b9272658e8e">       <img width="272" alt="image" src="https://github.com/user-attachments/assets/6a135f94-ba9d-481a-a5d2-2cf8ef96e262">      <img width="274" alt="image" src="https://github.com/user-attachments/assets/ed80271c-78f1-45d4-a18d-de2bbc023a8b">       <img width="273" alt="image" src="https://github.com/user-attachments/assets/78e31171-e3d7-4a04-96df-493d2782fd72">         <img width="272" alt="image" src="https://github.com/user-attachments/assets/3e9e5ae6-ad79-4e18-b9d1-7ae3c98bac56">
 
 
+Because they are estimated from other data, some of the keypoints are inaccurate. I hope these misses average out to a correct forecast over a large amount of training data and weight adjustments. We discovered in class that feeding a neural network with a variety of potential image orientations is an effective method of training it to generalise the distribution of image data. People pose in a variety of ways for pictures, therefore we should prepare our model for every orientation that might be required. To be clear, we plan to add translations and rotations to our dataset from the original dataset. Of course, we will use the same map to highlight the important spots when the images are translated and rotated.
+
+**Analysis**
+
+Let's have a look at a few of the new upgraded training_images for the purpose of EDA. Each image is now available in five copies, each with a rotation on the set  {−15,0,15}  degrees. These gentle rotations should be representative of what the model could experience in the training set. I will choose five images at random to plot, just like I used to.
+
+<img width="275" alt="image" src="https://github.com/user-attachments/assets/706d1a6f-bcfb-4428-9c97-36350230d802">          <img width="273" alt="image" src="https://github.com/user-attachments/assets/9b53ec01-8002-4cea-af31-3b4e7bb91741">           <img width="270" alt="image" src="https://github.com/user-attachments/assets/d0025eec-fde2-4aaa-bbc9-fc89dc085d5a">          <img width="270" alt="image" src="https://github.com/user-attachments/assets/297f0ca4-3ea7-4b19-9b79-bebefde97c90">               <img width="274" alt="image" src="https://github.com/user-attachments/assets/ca94f14d-8023-4e79-bddd-8d13833b8cf2">
+
+
+
+
+
+
+
 
 
 
