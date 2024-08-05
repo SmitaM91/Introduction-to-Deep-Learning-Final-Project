@@ -53,11 +53,51 @@ Let's have a look at a few of the new upgraded training_images for the purpose o
 
 <img width="275" alt="image" src="https://github.com/user-attachments/assets/706d1a6f-bcfb-4428-9c97-36350230d802">          <img width="273" alt="image" src="https://github.com/user-attachments/assets/9b53ec01-8002-4cea-af31-3b4e7bb91741">           <img width="270" alt="image" src="https://github.com/user-attachments/assets/d0025eec-fde2-4aaa-bbc9-fc89dc085d5a">          <img width="270" alt="image" src="https://github.com/user-attachments/assets/297f0ca4-3ea7-4b19-9b79-bebefde97c90">               <img width="274" alt="image" src="https://github.com/user-attachments/assets/ca94f14d-8023-4e79-bddd-8d13833b8cf2">
 
+To further diversity the training data, I will now apply linear translations to each image. Although we may perform many other augmentations on the data, I believe that rotation and translation working together are sufficient for this purpose. Reshading, noising up and horizontal flips are some other potential augmentations.
+
+**Model Building and Architecture**
+
+Two parts will make up the model I will employ to predict keypoints: a CNN-style feature extractor and a Dense ANN-style label creator. We discovered in class that iterating through three layers is the normal process for developing a convolutional feature extractor:
+[Convolve,Convolve,MaxPool]n 
+
+The next step involves repeating this set of three layers a certain number of times. This architecture selection is a hyperparameter that needs to be maximised. In a convolution layer, a simple mathematical operation is applied to the pixels surrounding a central pixel and the resultant value is recorded as a weight that corresponds to the original pixel. Then, every pixel in the supplied image goes through this procedure once again. In order to "blur" local features for upcoming convolution layers, the MaxPool operation serves as a filter. This helps pick up global features and helps handle chaotic images. Because the succeeding convolution layers will be conducting convolution on already convolved features, which were in turn functions of local features, they will draw from "farther" features relative to the original image as [C, C, MP] iterations grow. Many local traits combine to form a greater global feature. Since we are dealing with facial image data, we want the ANN to "see" the full image before allocating points.
+
+I am going to place BatchNormalization layers after each convolution layer to keep the weights from diverging. An input is mapped by a batch normalisation layer to a Standard Normal variable, which is then used for convolution calculations. It is better to work with smaller, more balanced values while doing addition and multiplication.
+
+For this project, I will experiment with multiple topologies and learning rates as part of my hyperparameter optimisation approach. I will only use the "Adam" optimiser to save training time, although "RMSprop" is also a useful optimiser that can be found in the Keras library. Please feel free to give it a try instead and compare the outcomes.
+
+**Initial Model**
+
+To get started, I will use four [C, C, MP] iterations, each with twice as many filters as the layer before it. LeakyReLU activations are what I will employ because, as our professor pointed out, they allow for greater output diversity for negative valued inputs. It uses a hyperparameter, LeakyReLU  α , which, once I have chosen my architecture, I will experiment with.
 
 
+**Analysis**
 
+The model functions! It is somewhat bouncy when it comes to validation loss, though, thus we might have to utilise some other callbacks instead of simply a patience option. In order to avoid storing versions of the model that are worse, I will employ a checkpointer. With a basic model up and running, we can begin the process of hyperparameter optimisation. I will verify the values of  η  on the set  {10−5,10−4,10−3,10−2} . It's possible that we could invest a lot of computational effort in optimising  η , yet it doesn't seem worth it given how long a single training cycle takes.
 
+Another thing I will do is maximise the number of [C-C-MP] layers, which can have values between 1 and 5 before the convolution space gets odd (3 X 3) and prevents a 2X2 filter from being properly MaxPooled.
 
+**Results and Analysis**
+
+Let's start by creating some visuals to show how effectively the model worked with the training and validation sets of data. Next, using the test set as a guide, we will create predictions and submit them to Kaggle for evaluation.
+
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/eea93c74-17f5-4891-9887-55eb56c8cddb">
+
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/b876918b-6319-4cda-8eb6-680a471aa211">
+
+**Analysis**
+
+The random forest appears to consistently produce the same forecasts. This is essentially a null model in which the mean value of each attribute is simply estimated. For facial recognition, this kind of forecast is practically meaningless. For making decisions, the neural network is consequently strongly favoured. While we might attempt to expand the size of the random forest, accuracy is unlikely to converge nearly as quickly as that of the neural network. I would rather improve the neural network through computing time.
+
+**Conclusion**
+
+This project acted as my introduction to facial recognition technology. As a feature extractor, I constructed a convolutional neural network and as a regressor for face important points, I attached it to an artificial neural network. The network performed admirably in recognising eyes and eyebrows, but it struggled to recognise the edges of lips and the points of noses. There is a chance that this error resulted from the various ways people pose for pictures. People will sometimes close their jaws and occasionally smile. When having their photo taken, most people usually have their eyes open.
+
+The neural network performed admirably despite its flaws. As my experiment came to an end, I compared my AI to a random forest regressor. Based on the photos that were presented to it, the random forest completely failed to generate adaptive keypoints. It appears that the null model, or mean value of each feature for each image, is all that the random forest can guess. Future improvements to the nueral network could include longer training times, more enhanced data, and a wider variety of augmentations.
+
+**Bibliography**
+
+Missing Value Imputation
 
 
 
